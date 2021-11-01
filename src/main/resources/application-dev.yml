@@ -23,6 +23,11 @@ spring:
         min-idle: 0
         max-active: 8
     timeout: 5000ms
+    # 项目自定义配置
+
+  myconfig:
+      # swagger 的 enable 配置
+      swagger-enable: true
 
 mybatis:
   type-aliases-package: com.robin.studyweb.pojo
@@ -30,4 +35,7 @@ mybatis:
     - classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+
+
 
