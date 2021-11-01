@@ -1,0 +1,19 @@
+spring:
+  application: # 项目应用名称
+    name: learn-item
+  profiles: # 启动环境加载
+    active: dev
+    # active: test
+    # active: prod
+
+# ================ 公共配置(优先级低于application-xxx.yml)  ================
+  # mvc配置
+  mvc:
+    format:
+      # 日期映射格式
+      date: yyyy-MM-dd HH:mm:ss
+  # servlet 配置
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
