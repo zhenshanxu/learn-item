@@ -1,5 +1,5 @@
 README.md
-norm.md
+NORM.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
