@@ -1,4 +1,4 @@
-package com.example.learnitem.config;
+package com.example.learnitem.config.redis;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

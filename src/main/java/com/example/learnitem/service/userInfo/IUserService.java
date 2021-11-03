@@ -1,4 +1,4 @@
-package com.example.learnitem.service;
+package com.example.learnitem.service.userInfo;
 
 import com.example.learnitem.bean.userInfo.UserBean;
 

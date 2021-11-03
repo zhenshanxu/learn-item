@@ -1,6 +1,7 @@
-package com.example.learnitem.service;
+package com.example.learnitem.service.impl.userInfo;
 
 import com.example.learnitem.bean.userInfo.UserBean;
+import com.example.learnitem.service.userInfo.IUserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.Map;
  * @Description:
  */
 @Service
-public class IUserServiceImpl implements IUserService{
+public class IUserServiceImpl implements IUserService {
 
     @Override
     public Map<String, Object> login(UserBean userBean) {
