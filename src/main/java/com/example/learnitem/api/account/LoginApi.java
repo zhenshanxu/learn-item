@@ -1,5 +1,6 @@
 package com.example.learnitem.api.account;
 
+import com.example.learnitem.service.account.LoginService;
 import com.example.learnitem.service.userInfo.IUserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginApi {
 
     @Autowired
-    IUserService userService;
+    LoginService loginService;
 }
