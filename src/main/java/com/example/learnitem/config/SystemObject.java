@@ -15,8 +15,16 @@ import org.springframework.stereotype.Component;
 public class SystemObject {
 
     public static MyConfig myConfig;
+
+    public static MailConfig mailConfig;
+
     @Autowired
     void setMyConfig(MyConfig myConfig){
         SystemObject.myConfig = myConfig;
+    }
+
+    @Autowired
+    void setMailConfig(MailConfig mailConfig){
+        SystemObject.mailConfig = mailConfig;
     }
 }

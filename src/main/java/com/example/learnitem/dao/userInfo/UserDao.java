@@ -1,4 +1,4 @@
-package com.example.learnitem.dao;
+package com.example.learnitem.dao.userInfo;
 
 import org.apache.ibatis.annotations.Mapper;
 

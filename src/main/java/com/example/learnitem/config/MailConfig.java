@@ -8,19 +8,27 @@ import org.springframework.stereotype.Component;
  * @BelongsProject: learn-item
  * @BelongsPackage: com.example.learnitem.config
  * @Author: ZhenShanXu
- * @CreateTime: 2021-11-01 14:31.
+ * @CreateTime: 2021-11-04 13:52.
  * @Description:
  */
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "spring.myconfig")
-public class MyConfig {
+@ConfigurationProperties(prefix = "spring.mail")
+public class MailConfig {
 
     /**
-     * swagger Enable 状态
+     * 邮件配置名
      */
-    private Boolean swaggerEnable;
+    private String userName;
 
+    /**
+     * 邮件授权
+     */
+    private String password;
 
+    /**
+     * 邮箱host
+     */
+    private String host;
 }

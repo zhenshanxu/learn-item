@@ -23,11 +23,25 @@ spring:
         min-idle: 0
         max-active: 8
     timeout: 5000ms
-    # 项目自定义配置
+  mail: # 邮箱配置
+    host: smtp.163.com
+    username: xuzhenshanvip@163.com
+    password: LENJRGXMIRWKSWPK
+    port: 465
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+        imap:
+          ssl:
+            socketFactory:
+              fallback: false
 
+  # 项目自定义配置
   myconfig:
-      # swagger 的 enable 配置
-      swagger-enable: true
+    # swagger 的 enable 配置
+    swagger-enable: true
 
 mybatis:
   type-aliases-package: com.robin.studyweb.pojo
