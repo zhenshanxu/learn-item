@@ -2,7 +2,7 @@ package com.example.learnitem.interceptors;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.learnitem.config.JwtUtil;
-import com.example.learnitem.utils.CommonUtil;
+import com.example.learnitem.utils.Constant;
 import io.jsonwebtoken.Claims;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -35,7 +35,7 @@ public class TokenInterceptor implements HandlerInterceptor {
                 Claims claims = jwtUtil.validateJWT(accessToken);
                 Long expiration = claims.getExpiration().getTime();
                 Long nowTime = System.currentTimeMillis();
-                if ((nowTime - expiration) > CommonUtil.TOKEN_EXPIRE_TIME) {
+                if ((nowTime - expiration) > Constant.TOKEN_EXPIRE_TIME) {
                     errorMsg(1, response);
                     return false;
                 } else {

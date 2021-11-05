@@ -1,6 +1,6 @@
 package com.example.learnitem.config;
 
-import com.example.learnitem.utils.CommonUtil;
+import com.example.learnitem.utils.Constant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -33,7 +33,7 @@ public class JwtUtil {
         //设置过期时间
         long presentTime = System.currentTimeMillis();
         Date issuedAtTime = new Date(presentTime);
-        Date expirationTime = new Date(presentTime + CommonUtil.TOKEN_EXPIRE_TIME);
+        Date expirationTime = new Date(presentTime + Constant.TOKEN_EXPIRE_TIME);
 
         SecretKey secretKey = generalKey();
         JwtBuilder builder = Jwts.builder()
@@ -41,7 +41,7 @@ public class JwtUtil {
                 // 主题
                 .setSubject(subject)
                 // 签发者
-                .setIssuer(CommonUtil.JWT_ID)
+                .setIssuer(Constant.JWT_ID)
                 // 签发时间
                 .setIssuedAt(issuedAtTime)
                 // 签名算法以及密匙
@@ -71,7 +71,7 @@ public class JwtUtil {
      * @return
      */
     public static SecretKey generalKey() {
-        String stringKey = CommonUtil.TOKEN_SECRET;
+        String stringKey = Constant.TOKEN_SECRET;
         byte[] encodedKey = Base64.decodeBase64(stringKey);
         return new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
     }

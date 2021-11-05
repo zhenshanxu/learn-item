@@ -22,7 +22,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new TokenInterceptor()).
                 addPathPatterns("/**").
                 excludePathPatterns("/").
-                excludePathPatterns("/api/user/userLogin").
+                excludePathPatterns("/api/getVerifyCode").
                 excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
     }
 }
