@@ -29,10 +29,12 @@ public class Common {
      */
     public static String getVerifyCodeHtml() {
         return "<h2>亲爱的用户：</h2>"
-                + "<h3>${name} 您好!</h3>"
+                + "     <h3>${name} 您好!</h3>"
                 + "<h3>您登录的账号 ${name} 所需的 ${item} 的令牌验证码 为：</h3>"
-                + "<div style ='margin-top:50px'>"
-                + "<h1>${verifyCode}</h1>"
+                + "<div>"
+                + "<p style='font-size:25px;color:darkblue;line-height:10px'> ${verifyCode} </p>"
+                + "<p style='font-size:15px;color:red;line-height:10px'>有效时间 ${time} 分钟有效</p>"
+                + "<p style='font-size:15px;color:red;line-height:1px'>为保证账号安全，请勿向任何人提供验证码</p>"
                 + "</div>";
     }
 

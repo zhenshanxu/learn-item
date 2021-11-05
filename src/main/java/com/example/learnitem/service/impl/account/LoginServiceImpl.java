@@ -1,5 +1,6 @@
 package com.example.learnitem.service.impl.account;
 
+import com.example.learnitem.config.redis.RedisService;
 import com.example.learnitem.service.account.LoginService;
 import com.example.learnitem.utils.Common;
 import com.example.learnitem.utils.Constant;
@@ -22,10 +23,12 @@ import java.util.Map;
 public class LoginServiceImpl implements LoginService {
 
     private final MailSendUtil mailSendUtil;
+    private final RedisService redisService;
 
     @Autowired
-    public LoginServiceImpl(MailSendUtil mailSendUtil) {
+    public LoginServiceImpl(MailSendUtil mailSendUtil, RedisService redisService) {
         this.mailSendUtil = mailSendUtil;
+        this.redisService = redisService;
     }
 
 
@@ -62,15 +65,20 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public Map<String, Object> getVerifyCode(String account) {
         Map<String,Object> result = new HashMap<>();
+        int time = 60;
         boolean isMail = account.matches(Constant.MAIL_RULES);
         int verifyCode = Common.getRandomCode();
         if(isMail){
            String content = Common.getVerifyCodeHtml();
-           content = content.replace("${name}", account).replace("${item}", "学习项目").replace("${verifyCode}", String.valueOf(verifyCode));
+           content = content.replace("${name}", account)
+                   .replace("${item}", "学习项目")
+                   .replace("${verifyCode}", String.valueOf(verifyCode))
+                   .replace("${time}", String.valueOf(time/60));
            mailSendUtil.sendWithHtml(account,"验证码",content);
         }else{
             //todo 添加短信
         }
-        return null;
+//        redisService.set(account, verifyCode,time);
+        return result;
     }
 }
