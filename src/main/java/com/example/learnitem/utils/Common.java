@@ -1,5 +1,7 @@
 package com.example.learnitem.utils;
 
+import cn.hutool.crypto.SecureUtil;
+import com.example.learnitem.config.SystemObject;
 import org.springframework.stereotype.Component;
 
 /**
@@ -37,5 +39,14 @@ public class Common {
                 + "<p style='font-size:15px;color:red;line-height:1px'>为保证账号安全，请勿向任何人提供验证码</p>"
                 + "</div>";
     }
+
+    /**
+     * 返回md5加密后的密码，根据当前配置的salt
+     *
+     * @return
+     */
+    public static String getPasswordMd5(int userId,String password){
+        return SecureUtil.md5(SystemObject.myConfig.getMd5Salt()+userId+password);
+    };
 
 }

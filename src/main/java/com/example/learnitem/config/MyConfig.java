@@ -21,6 +21,7 @@ public class MyConfig {
      * swagger Enable 状态
      */
     private Boolean swaggerEnable;
+    private String md5Salt;
 
 
 }

@@ -42,6 +42,7 @@ spring:
   myconfig:
     # swagger 的 enable 配置
     swagger-enable: true
+    md5-salt: passwordsalt
 
 mybatis:
   type-aliases-package: com.robin.studyweb.pojo

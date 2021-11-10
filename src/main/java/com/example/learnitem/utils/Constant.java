@@ -15,6 +15,8 @@ import java.util.UUID;
 @Component
 public class Constant {
 
+    public static final long VERIFY_CODE_VALID_TIME = 60;
+
     /**
      * token有效时间(24小时)
      */

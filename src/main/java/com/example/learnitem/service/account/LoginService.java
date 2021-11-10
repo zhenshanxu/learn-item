@@ -15,20 +15,18 @@ public interface LoginService {
     /**
      * 账号登录
      *
-     * @param account  账号（手机号/邮箱）
-     * @param password 密码
+     * @param accountToLogin  账号（手机号/邮箱）密码登录
      * @return 返回结果
      */
-    Map<String, Object> accountToLogin(String account, String password);
+    Map<String, Object> accountToLogin(Map<String,Object>accountToLogin);
 
     /**
      * 验证码登录
      *
-     * @param account 账号（手机号/邮箱）
-     * @param code    验证码
+     * @param codeToLogin 账号（手机号/邮箱）验证码登录
      * @return 返回结果
      */
-    Map<String, Object> codeToLogin(String account, String code);
+    Map<String, Object> codeToLogin(Map<String,Object>codeToLogin);
 
     /**
      * 获取验证码

@@ -47,4 +47,24 @@ public class LoginApi {
         return response;
     }
 
+    @ApiOperation("验证码登录")
+    @PostMapping("/api/codeToLogin")
+    public ResponseBean codeToLogin(@RequestBody Map<String,Object> codeToLogin) {
+        ResponseBean response = new ResponseBean();
+        try {
+            Map<String, Object> flag = loginService.codeToLogin(codeToLogin);
+            if (flag.containsKey(Constant.ERROR_VALUE)) {
+                response.setSuccess(false);
+                response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+            } else {
+                response.setSuccess(true);
+                response.setResult(flag);
+            }
+        } catch (Exception e) {
+            response.setSuccess(false);
+            response.setErrorMessage(e.getMessage());
+        }
+        return response;
+    }
+
 }

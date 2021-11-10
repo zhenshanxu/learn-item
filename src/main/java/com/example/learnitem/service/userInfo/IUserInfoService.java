@@ -1,6 +1,6 @@
 package com.example.learnitem.service.userInfo;
 
-import com.example.learnitem.bean.userInfo.UserBean;
+import com.example.learnitem.bean.userInfo.UserInfoBean;
 
 import java.util.List;
 import java.util.Map;
@@ -13,44 +13,44 @@ import java.util.Map;
  * @Description:
  */
 
-public interface IUserService {
+public interface IUserInfoService {
 
     /**
      * 用户登录
      *
-     * @param userBean
+     * @param userInfoBean
      * @return
      */
-    Map<String, Object> login(UserBean userBean);
+    Map<String, Object> login(UserInfoBean userInfoBean);
 
     /**
      * 插入用户信息
      *
-     * @param userBean
+     * @param userInfoBean
      * @return
      */
-    Map<String, Object> saveUser(UserBean userBean);
+    Map<String, Object> saveUser(UserInfoBean userInfoBean);
 
     /**
      * 更新用户信息
      *
-     * @param userBean
+     * @param userInfoBean
      * @return
      */
-    Map<String, Object> updateUser(UserBean userBean);
+    Map<String, Object> updateUser(UserInfoBean userInfoBean);
 
     /**
      * 删除用户
      *
-     * @param userBean
+     * @param userInfoBean
      */
-    void deleteUser(UserBean userBean);
+    void deleteUser(UserInfoBean userInfoBean);
 
     /**
      * 获取用户
      *
-     * @param userBean
+     * @param userInfoBean
      * @return
      */
-    List<UserBean> getUserList(UserBean userBean);
+    List<UserInfoBean> getUserList(UserInfoBean userInfoBean);
 }

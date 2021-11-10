@@ -18,7 +18,7 @@ import org.springframework.data.annotation.Id;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserBean {
+public class UserInfoBean {
 
     @Id
     private int id;
