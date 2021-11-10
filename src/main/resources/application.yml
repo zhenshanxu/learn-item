@@ -9,6 +9,7 @@ spring:
 # ================ 公共配置(优先级低于application-xxx.yml)  ================
   # mvc配置
   mvc:
+    static-path-pattern: /static/**
     format:
       # 日期映射格式
       date: yyyy-MM-dd HH:mm:ss

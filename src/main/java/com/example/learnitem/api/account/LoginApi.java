@@ -38,7 +38,7 @@ public class LoginApi {
                 response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
                 response.setSuccess(true);
-                response.setResult(flag);
+                response.setResult("验证码发送成功!");
             }
         } catch (Exception e) {
             response.setSuccess(false);
@@ -67,4 +67,23 @@ public class LoginApi {
         return response;
     }
 
+    @ApiOperation("密码登录")
+    @PostMapping("/api/accountToLogin")
+    public ResponseBean accountToLogin(@RequestBody Map<String,Object> accountToLogin) {
+        ResponseBean response = new ResponseBean();
+        try {
+            Map<String, Object> flag = loginService.accountToLogin(accountToLogin);
+            if (flag.containsKey(Constant.ERROR_VALUE)) {
+                response.setSuccess(false);
+                response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+            } else {
+                response.setSuccess(true);
+                response.setResult(flag);
+            }
+        } catch (Exception e) {
+            response.setSuccess(false);
+            response.setErrorMessage(e.getMessage());
+        }
+        return response;
+    }
 }
