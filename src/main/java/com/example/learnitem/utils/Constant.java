@@ -20,7 +20,7 @@ public class Constant {
     /**
      * token有效时间(24小时)
      */
-    public static final long TOKEN_EXPIRE_TIME = 24 * 60 * 60 * 1000L;
+    public static final long TOKEN_EXPIRE_TIME = 60 * 60 * 1000L;
 
     /**
      * JWT_ID
