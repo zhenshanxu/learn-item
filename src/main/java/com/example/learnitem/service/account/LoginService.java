@@ -29,10 +29,19 @@ public interface LoginService {
     Map<String, Object> codeToLogin(Map<String,Object>codeToLogin);
 
     /**
+     * 用户注册
+     *
+     * @param signInMap
+     * @return
+     */
+    Map<String, Object> signIn(Map<String, Object> signInMap);
+
+    /**
      * 获取验证码
      *
      * @param account 账号（手机号/邮箱）
      * @return 返回值
      */
     Map<String, Object> getVerifyCode(String account);
+
 }

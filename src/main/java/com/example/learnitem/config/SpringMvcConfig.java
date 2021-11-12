@@ -27,6 +27,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new TokenInterceptor()).
                 addPathPatterns("/**").
                 excludePathPatterns("/").
+                excludePathPatterns("/api/signIn").
                 excludePathPatterns("/api/getVerifyCode").
                 excludePathPatterns("/api/codeToLogin").
                 excludePathPatterns("/api/accountToLogin").

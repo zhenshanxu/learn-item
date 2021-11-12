@@ -45,11 +45,13 @@ spring:
     md5-salt: passwordsalt
 
 mybatis:
-  type-aliases-package: com.robin.studyweb.pojo
+  type-aliases-package: com.example.learnitem.dao
   mapper-locations:
     - classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 
 
 

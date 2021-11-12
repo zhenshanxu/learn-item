@@ -1,19 +1,20 @@
-package com.example.learnitem.service.userInfo;
+package com.example.learnitem.dao.userInfo;
 
 import com.example.learnitem.bean.userInfo.UserInfoBean;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @BelongsProject: learn-item
- * @BelongsPackage: com.example.learnitem.service
+ * @BelongsPackage: com.example.learnitem.dao
  * @Author: ZhenShanXu
- * @CreateTime: 2021-11-02 14:22.
+ * @CreateTime: 2021-11-03 10:25.
  * @Description:
  */
 
-public interface IUserInfoService {
+@Mapper
+public interface UserInfoDao {
 
     /**
      * 插入用户信息
@@ -21,7 +22,7 @@ public interface IUserInfoService {
      * @param userInfoBean
      * @return
      */
-    Map<String, Object> saveUser(UserInfoBean userInfoBean);
+    void saveUser(UserInfoBean userInfoBean);
 
     /**
      * 更新用户信息
@@ -29,14 +30,8 @@ public interface IUserInfoService {
      * @param userInfoBean
      * @return
      */
-    Map<String, Object> updateUser(UserInfoBean userInfoBean);
+    void updateUser(UserInfoBean userInfoBean);
 
-    /**
-     * 删除用户
-     *
-     * @param userInfoBean
-     */
-    void deleteUser(UserInfoBean userInfoBean);
 
     /**
      * 获取用户
@@ -45,4 +40,5 @@ public interface IUserInfoService {
      * @return
      */
     List<UserInfoBean> getUserList(UserInfoBean userInfoBean);
+
 }

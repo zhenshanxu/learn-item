@@ -1,11 +1,15 @@
 package com.example.learnitem.bean.userInfo;
 
+import com.example.learnitem.bean.assist.AssistBean;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
+
+import java.io.Serializable;
 
 /**
  * @BelongsProject: learn-item
@@ -14,11 +18,14 @@ import org.springframework.data.annotation.Id;
  * @CreateTime: 2021-11-02 10:35.
  * @Description: 用户详情
  */
+@ApiModel("用户详情")
 @Data
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserInfoBean {
+@Accessors(chain = true)
+public class UserInfoBean extends AssistBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     private int id;

@@ -10,6 +10,7 @@ import com.example.learnitem.utils.Constant;
 import com.example.learnitem.utils.sendUtils.MailSendUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,35 +41,36 @@ public class LoginServiceImpl implements LoginService {
     /**
      * 账号登录
      *
-     * @param accountToLogin  账号（手机号/邮箱）密码登录
+     * @param accountToLogin 账号（手机号/邮箱）密码登录
      * @return 返回值
      */
     @Override
-    public Map<String, Object> accountToLogin(Map<String,Object> accountToLogin) {
-        Map<String,Object> result = new HashMap<>();
+    public Map<String, Object> accountToLogin(Map<String, Object> accountToLogin) {
+        Map<String, Object> result = new HashMap<>();
         UserInfoBean userInfo = new UserInfoBean();
         String account = String.valueOf(accountToLogin.get("account"));
         String password = String.valueOf(accountToLogin.get("password"));
         boolean isMail = account.matches(Constant.MAIL_RULES);
-        if(isMail){
+        if (isMail) {
             userInfo.setEmail(account);
-        }else{
+        } else {
             userInfo.setPhone(account);
         }
         List<UserInfoBean> userInfoList = userInfoService.getUserList(userInfo);
         UserInfoBean user = new UserInfoBean();
-        if(userInfoList.size()==0){
+        if (userInfoList.size() == 0) {
             result.put(Constant.ERROR_VALUE, "未检测到账号,请注册后使用!");
             return result;
-        }else{
+        } else {
             user = userInfoList.get(0);
         }
-        if(!user.getPassword().equals(Common.getPasswordMd5(user.getId(),password))){
+        if (!user.getPassword().equals(Common.getPasswordMd5(user.getId(), password))) {
             result.put(Constant.ERROR_VALUE, "密码输入错误,请重新输入!");
             return result;
         }
-        String token = JwtUtil.createJWT(user.getId(),account);
-        redisService.set(token, user,Constant.TOKEN_EXPIRE_TIME);
+        String token = JwtUtil.createJWT(user.getId(), account);
+        redisService.set(token, user, Constant.TOKEN_EXPIRE_TIME);
+        result.put("token", token);
         return result;
     }
 
@@ -79,13 +81,13 @@ public class LoginServiceImpl implements LoginService {
      * @return 返回值
      */
     @Override
-    public Map<String, Object> codeToLogin(Map<String,Object> codeToLogin) {
-        Map<String,Object> result = new HashMap<>();
+    public Map<String, Object> codeToLogin(Map<String, Object> codeToLogin) {
+        Map<String, Object> result = new HashMap<>();
         UserInfoBean userInfo = new UserInfoBean();
         String account = String.valueOf(codeToLogin.get("account"));
         String verifyCode = String.valueOf(codeToLogin.get("verifyCode"));
         Object code = redisService.get(account);
-        if(code == null){
+        if (code == null) {
             result.put(Constant.ERROR_VALUE, "验证码已过期,请重新获取!");
             return result;
         }
@@ -94,21 +96,79 @@ public class LoginServiceImpl implements LoginService {
             return result;
         }
         boolean isMail = account.matches(Constant.MAIL_RULES);
-        if(isMail){
+        if (isMail) {
             userInfo.setEmail(account);
-        }else{
+        } else {
             userInfo.setPhone(account);
         }
         List<UserInfoBean> userInfoList = userInfoService.getUserList(userInfo);
         UserInfoBean user = new UserInfoBean();
-        if(userInfoList.size()==0){
+        if (userInfoList.size() == 0) {
             result.put(Constant.ERROR_VALUE, "未检测到账号,请注册后使用!");
             return result;
-        }else{
+        } else {
             user = userInfoList.get(0);
         }
-        String token = JwtUtil.createJWT(user.getId(),account);
-        redisService.set(token, user,Constant.TOKEN_EXPIRE_TIME);
+        String token = JwtUtil.createJWT(user.getId(), account);
+        redisService.set(token, user, Constant.TOKEN_EXPIRE_TIME);
+        result.put("token", token);
+        return result;
+    }
+
+    /**
+     * 账号注册
+     *
+     * @param signInMap 账号（手机号/邮箱）注册
+     * @return 返回值
+     */
+    @Override
+    @Transactional
+    public Map<String, Object> signIn(Map<String, Object> signInMap) {
+        Map<String, Object> result = new HashMap<>();
+        UserInfoBean userInfo = new UserInfoBean();
+        String account = String.valueOf(signInMap.get("account"));
+        String password = null;
+        if (signInMap.containsKey("verifyCode")) {
+            String verifyCode = String.valueOf(signInMap.get("verifyCode"));
+            Object code = redisService.get(account);
+            if (code == null) {
+                result.put(Constant.ERROR_VALUE, "验证码已过期,请重新获取!");
+                return result;
+            }
+            if (verifyCode == code) {
+                result.put(Constant.ERROR_VALUE, "验证码不正确,请重新输入!");
+                return result;
+            }
+            password = "123456";
+            result.put("account", account);
+            result.put("content", "临时密码为:" + password + ",请登录后修改密码!");
+        } else if (signInMap.containsKey("password")) {
+            password = String.valueOf(signInMap.get("password"));
+            result.put("account", account);
+            result.put("content", "账号注册成功!");
+        }
+        boolean isMail = account.matches(Constant.MAIL_RULES);
+        if (isMail) {
+            userInfo.setEmail(account);
+        } else {
+            userInfo.setPhone(account);
+        }
+        List<UserInfoBean> userInfoList = userInfoService.getUserList(userInfo);
+        if (userInfoList.size() != 0) {
+            result.put(Constant.ERROR_VALUE, "该账号已注册，请登录!");
+            return result;
+        }
+        userInfo.setCreateTime(System.currentTimeMillis());
+        userInfoService.saveUser(userInfo);
+        UserInfoBean userInfoBean = new UserInfoBean();
+        userInfoBean.setId(userInfo.getId())
+                .setName("新用户-" + userInfo.getId())
+                .setPassword(Common.getPasswordMd5(userInfo.getId(), password));
+        userInfoBean.setCreateTime(System.currentTimeMillis());
+        userInfoBean.setMender(userInfo.getId());
+        userInfoBean.setCreator(userInfo.getId());
+        userInfoBean.setModifyTime(System.currentTimeMillis());
+        userInfoService.updateUser(userInfoBean);
         return result;
     }
 
@@ -120,19 +180,19 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public Map<String, Object> getVerifyCode(String account) {
-        Map<String,Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
         long time = Constant.VERIFY_CODE_VALID_TIME;
         boolean isMail = account.matches(Constant.MAIL_RULES);
         int verifyCode = Common.getRandomCode();
-        if(isMail){
-           String content = Common.getVerifyCodeHtml();
-           content = content.replace("${name}", account)
-                   .replace("${item}", "学习项目")
-                   .replace("${verifyCode}", String.valueOf(verifyCode))
-                   .replace("${time}", String.valueOf(time/60));
-           mailSendUtil.sendWithHtml(account,"验证码",content);
+        if (isMail) {
+            String content = Common.getVerifyCodeHtml();
+            content = content.replace("${name}", account)
+                    .replace("${item}", "学习项目")
+                    .replace("${verifyCode}", String.valueOf(verifyCode))
+                    .replace("${time}", String.valueOf(time / 60));
+            mailSendUtil.sendWithHtml(account, "验证码", content);
         }//todo 添加短信
-        redisService.set(account, verifyCode,time);
+        redisService.set(account, verifyCode, time);
         return result;
     }
 }

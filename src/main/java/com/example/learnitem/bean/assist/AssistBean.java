@@ -3,7 +3,7 @@ package com.example.learnitem.bean.assist;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.experimental.Accessors;
 
 /**
  * @BelongsProject: learn-item
@@ -13,8 +13,6 @@ import lombok.ToString;
  * @Description:
  */
 @Data
-@ToString
-@AllArgsConstructor
 @NoArgsConstructor
 public class AssistBean {
 

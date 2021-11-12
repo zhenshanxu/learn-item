@@ -3,6 +3,7 @@ package com.example.learnitem.bean.assist;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
  * @BelongsProject: learn-item
@@ -13,8 +14,8 @@ import lombok.NoArgsConstructor;
  */
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@Accessors(chain = true)
 public class ResponseBean {
     /**
      * 请求状态 true：成功 false：失败

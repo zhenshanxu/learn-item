@@ -86,4 +86,24 @@ public class LoginApi {
         }
         return response;
     }
+
+    @ApiOperation("新用户注册")
+    @PostMapping("/api/signIn")
+    public ResponseBean signIn(@RequestBody Map<String,Object> signInMap) {
+        ResponseBean response = new ResponseBean();
+        try {
+            Map<String, Object> flag = loginService.signIn(signInMap);
+            if (flag.containsKey(Constant.ERROR_VALUE)) {
+                response.setSuccess(false);
+                response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+            } else {
+                response.setSuccess(true);
+                response.setResult(flag);
+            }
+        } catch (Exception e) {
+            response.setSuccess(false);
+            response.setErrorMessage(e.getMessage());
+        }
+        return response;
+    }
 }
