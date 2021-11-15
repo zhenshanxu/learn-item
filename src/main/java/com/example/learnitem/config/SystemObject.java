@@ -1,5 +1,8 @@
 package com.example.learnitem.config;
 
+import com.example.learnitem.config.userDefined.MailConfig;
+import com.example.learnitem.config.userDefined.MyConfig;
+import com.example.learnitem.config.userDefined.UploadConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,13 +21,20 @@ public class SystemObject {
 
     public static MailConfig mailConfig;
 
+    public static UploadConfig uploadConfig;
+
     @Autowired
-    void setMyConfig(MyConfig myConfig){
+    void setMyConfig(MyConfig myConfig) {
         SystemObject.myConfig = myConfig;
     }
 
     @Autowired
-    void setMailConfig(MailConfig mailConfig){
+    void setMailConfig(MailConfig mailConfig) {
         SystemObject.mailConfig = mailConfig;
+    }
+
+    @Autowired
+    void setUploadConfig(UploadConfig uploadConfig) {
+        SystemObject.uploadConfig = uploadConfig;
     }
 }

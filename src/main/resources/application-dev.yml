@@ -38,11 +38,19 @@ spring:
             socketFactory:
               fallback: false
 
+  # 文件上传相关配置
+  upload-config:
+    # 文件保存的根目录，所有文件都保存在整个文件夹下
+    root-folder: E:\Test File
+
   # 项目自定义配置
   myconfig:
     # swagger 的 enable 配置
     swagger-enable: true
+    # 密码的盐值4924.28
     md5-salt: passwordsalt
+
+
 
 mybatis:
   type-aliases-package: com.example.learnitem.dao
