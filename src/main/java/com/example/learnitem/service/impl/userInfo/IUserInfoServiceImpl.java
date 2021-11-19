@@ -49,10 +49,10 @@ public class IUserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
-    public List<UserInfoBean> getUserList(UserInfoBean userInfoBean) {
+    public List<UserInfoBean> queryUserInfo(UserInfoBean userInfoBean) {
         if (userInfoBean.getPage() > 0) {
             userInfoBean.setPage((userInfoBean.getPage() - 1) * userInfoBean.getPageSize());
         }
-        return userInfoDao.getUserList(userInfoBean);
+        return userInfoDao.queryUserInfo(userInfoBean);
     }
 }

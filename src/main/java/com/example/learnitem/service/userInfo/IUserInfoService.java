@@ -44,5 +44,5 @@ public interface IUserInfoService {
      * @param userInfoBean
      * @return
      */
-    List<UserInfoBean> getUserList(UserInfoBean userInfoBean);
+    List<UserInfoBean> queryUserInfo(UserInfoBean userInfoBean);
 }

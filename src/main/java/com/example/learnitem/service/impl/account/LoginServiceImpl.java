@@ -58,7 +58,7 @@ public class LoginServiceImpl implements LoginService {
         } else {
             userInfo.setPhone(account);
         }
-        List<UserInfoBean> userInfoList = userInfoService.getUserList(userInfo);
+        List<UserInfoBean> userInfoList = userInfoService.queryUserInfo(userInfo);
         UserInfoBean user = new UserInfoBean();
         if (userInfoList.size() == 0) {
             result.put(Constant.ERROR_VALUE, "未检测到账号,请注册后使用!");
@@ -103,7 +103,7 @@ public class LoginServiceImpl implements LoginService {
         } else {
             userInfo.setPhone(account);
         }
-        List<UserInfoBean> userInfoList = userInfoService.getUserList(userInfo);
+        List<UserInfoBean> userInfoList = userInfoService.queryUserInfo(userInfo);
         UserInfoBean user = new UserInfoBean();
         if (userInfoList.size() == 0) {
             result.put(Constant.ERROR_VALUE, "未检测到账号,请注册后使用!");
@@ -155,7 +155,7 @@ public class LoginServiceImpl implements LoginService {
         } else {
             userInfo.setPhone(account);
         }
-        List<UserInfoBean> userInfoList = userInfoService.getUserList(userInfo);
+        List<UserInfoBean> userInfoList = userInfoService.queryUserInfo(userInfo);
         if (userInfoList.size() != 0) {
             result.put(Constant.ERROR_VALUE, "该账号已注册，请登录!");
             return result;

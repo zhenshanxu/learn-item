@@ -2,7 +2,6 @@ package com.example.learnitem.api.userInfo;
 
 import com.example.learnitem.bean.assist.ResponseBean;
 import com.example.learnitem.bean.userInfo.UserInfoBean;
-import com.example.learnitem.dao.userInfo.UserInfoDao;
 import com.example.learnitem.service.userInfo.IUserInfoService;
 import com.example.learnitem.utils.Constant;
 import io.swagger.annotations.Api;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -76,6 +76,21 @@ public class UserInfoApi {
             userInfoService.deleteUserInfo(userInfo);
             response.setSuccess(true);
             response.setResult("用户信息删除成功!");
+        } catch (Exception e) {
+            response.setSuccess(false);
+            response.setErrorMessage(e.getMessage());
+        }
+        return response;
+    }
+
+    @ApiOperation("查询用户信息")
+    @PostMapping("/api/queryUserInfo")
+    public ResponseBean queryUserInfo(@RequestBody UserInfoBean userInfo) {
+        ResponseBean response = new ResponseBean();
+        try {
+            List<UserInfoBean> userInfoList = userInfoService.queryUserInfo(userInfo);
+            response.setSuccess(true);
+            response.setResult(userInfoList);
         } catch (Exception e) {
             response.setSuccess(false);
             response.setErrorMessage(e.getMessage());

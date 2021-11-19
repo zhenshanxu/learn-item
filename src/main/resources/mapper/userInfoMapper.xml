@@ -46,7 +46,7 @@
     </update>
 
     <!--获取用户列表-->
-    <select id="getUserList" resultType="com.example.learnitem.bean.userInfo.UserInfoBean">
+    <select id="queryUserInfo" resultType="com.example.learnitem.bean.userInfo.UserInfoBean">
         SELECT * FROM sys_user_info
         <where>
             is_delete = 1
