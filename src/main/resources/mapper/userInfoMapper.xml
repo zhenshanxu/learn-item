@@ -55,5 +55,13 @@
             <if test="email !=null and email !='' ">AND email = #{email}</if>
         </where>
         ORDER BY create_time DESC
+        <if test="pageSize != 0 and pageSize != null">
+            LIMIT
+            #{pageSize}
+        </if>
+        <if test="page != 0 and page != null">
+            OFFSET
+            #{page}
+        </if>
     </select>
 </mapper>

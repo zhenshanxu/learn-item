@@ -29,7 +29,7 @@ public class LoginApi {
 
     @ApiOperation("获取验证码")
     @PostMapping("/api/getVerifyCode")
-    public ResponseBean getVerifyCode(@RequestBody Map<String,Object> account) {
+    public ResponseBean getVerifyCode(@RequestBody Map<String, Object> account) {
         ResponseBean response = new ResponseBean();
         try {
             Map<String, Object> flag = loginService.getVerifyCode(account.get("account").toString());
@@ -49,7 +49,7 @@ public class LoginApi {
 
     @ApiOperation("验证码登录")
     @PostMapping("/api/codeToLogin")
-    public ResponseBean codeToLogin(@RequestBody Map<String,Object> codeToLogin) {
+    public ResponseBean codeToLogin(@RequestBody Map<String, Object> codeToLogin) {
         ResponseBean response = new ResponseBean();
         try {
             Map<String, Object> flag = loginService.codeToLogin(codeToLogin);
@@ -69,7 +69,7 @@ public class LoginApi {
 
     @ApiOperation("密码登录")
     @PostMapping("/api/accountToLogin")
-    public ResponseBean accountToLogin(@RequestBody Map<String,Object> accountToLogin) {
+    public ResponseBean accountToLogin(@RequestBody Map<String, Object> accountToLogin) {
         ResponseBean response = new ResponseBean();
         try {
             Map<String, Object> flag = loginService.accountToLogin(accountToLogin);
@@ -89,7 +89,7 @@ public class LoginApi {
 
     @ApiOperation("新用户注册")
     @PostMapping("/api/signIn")
-    public ResponseBean signIn(@RequestBody Map<String,Object> signInMap) {
+    public ResponseBean signIn(@RequestBody Map<String, Object> signInMap) {
         ResponseBean response = new ResponseBean();
         try {
             Map<String, Object> flag = loginService.signIn(signInMap);

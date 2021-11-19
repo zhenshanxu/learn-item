@@ -33,12 +33,17 @@ public class Constant {
     public static final String TOKEN_SECRET = "encryption encoding";
 
     /**
+     * 邮件规则
+     */
+    public static String MAIL_RULES = "^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-z]{2,}$";
+
+    /**
      * 错误值
      */
     public static String ERROR_VALUE = "error";
 
     /**
-     * 邮件规则
+     * 删除状态
      */
-    public static String MAIL_RULES = "^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-z]{2,}$";
+    public static int DELETE_STATUS = -1;
 }

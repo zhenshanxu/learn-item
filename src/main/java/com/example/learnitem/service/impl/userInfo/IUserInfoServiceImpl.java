@@ -3,6 +3,7 @@ package com.example.learnitem.service.impl.userInfo;
 import com.example.learnitem.bean.userInfo.UserInfoBean;
 import com.example.learnitem.dao.userInfo.UserInfoDao;
 import com.example.learnitem.service.userInfo.IUserInfoService;
+import com.example.learnitem.utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,11 +44,15 @@ public class IUserInfoServiceImpl implements IUserInfoService {
 
     @Override
     public void deleteUser(UserInfoBean userInfoBean) {
+        userInfoBean.setIsDelete(Constant.DELETE_STATUS);
         userInfoDao.updateUser(userInfoBean);
     }
 
     @Override
     public List<UserInfoBean> getUserList(UserInfoBean userInfoBean) {
+        if (userInfoBean.getPage() > 0) {
+            userInfoBean.setPage((userInfoBean.getPage() - 1) * userInfoBean.getPageSize());
+        }
         return userInfoDao.getUserList(userInfoBean);
     }
 }
