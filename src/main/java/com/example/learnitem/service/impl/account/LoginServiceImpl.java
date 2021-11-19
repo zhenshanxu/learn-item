@@ -161,7 +161,7 @@ public class LoginServiceImpl implements LoginService {
             return result;
         }
         userInfo.setCreateTime(System.currentTimeMillis());
-        userInfoService.saveUser(userInfo);
+        userInfoService.addUserInfo(userInfo);
         UserInfoBean userInfoBean = new UserInfoBean();
         userInfoBean.setId(userInfo.getId())
                 .setName("新用户-" + userInfo.getId())
@@ -170,7 +170,7 @@ public class LoginServiceImpl implements LoginService {
         userInfoBean.setMender(userInfo.getId());
         userInfoBean.setCreator(userInfo.getId());
         userInfoBean.setModifyTime(System.currentTimeMillis());
-        userInfoService.updateUser(userInfoBean);
+        userInfoService.updateUserInfo(userInfoBean);
         return result;
     }
 

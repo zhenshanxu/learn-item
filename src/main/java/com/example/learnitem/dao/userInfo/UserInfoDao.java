@@ -22,7 +22,7 @@ public interface UserInfoDao {
      * @param userInfoBean
      * @return
      */
-    void saveUser(UserInfoBean userInfoBean);
+    void addUserInfo(UserInfoBean userInfoBean);
 
     /**
      * 更新用户信息
@@ -30,7 +30,7 @@ public interface UserInfoDao {
      * @param userInfoBean
      * @return
      */
-    void updateUser(UserInfoBean userInfoBean);
+    void updateUserInfo(UserInfoBean userInfoBean);
 
 
     /**

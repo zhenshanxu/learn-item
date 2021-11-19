@@ -29,23 +29,23 @@ public class IUserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
-    public Map<String, Object> saveUser(UserInfoBean userInfoBean) {
+    public Map<String, Object> addUserInfo(UserInfoBean userInfoBean) {
         Map<String, Object> result = new HashMap<>();
-        userInfoDao.saveUser(userInfoBean);
+        userInfoDao.addUserInfo(userInfoBean);
         return result;
     }
 
     @Override
-    public Map<String, Object> updateUser(UserInfoBean userInfoBean) {
+    public Map<String, Object> updateUserInfo(UserInfoBean userInfoBean) {
         Map<String, Object> result = new HashMap<>();
-        userInfoDao.updateUser(userInfoBean);
+        userInfoDao.updateUserInfo(userInfoBean);
         return result;
     }
 
     @Override
-    public void deleteUser(UserInfoBean userInfoBean) {
+    public void deleteUserInfo(UserInfoBean userInfoBean) {
         userInfoBean.setIsDelete(Constant.DELETE_STATUS);
-        userInfoDao.updateUser(userInfoBean);
+        userInfoDao.updateUserInfo(userInfoBean);
     }
 
     @Override

@@ -3,7 +3,7 @@
 <mapper namespace="com.example.learnitem.dao.userInfo.UserInfoDao">
 
     <!--添加新用户-->
-    <insert id="saveUser" keyProperty="id" parameterType="com.example.learnitem.bean.userInfo.UserInfoBean"
+    <insert id="addUserInfo" keyProperty="id" parameterType="com.example.learnitem.bean.userInfo.UserInfoBean"
             useGeneratedKeys="true">
         INSERT INTO
         sys_user_info
@@ -30,7 +30,7 @@
     </insert>
 
     <!--更新修改用户-->
-    <update id="updateUser" parameterType="com.example.learnitem.bean.userInfo.UserInfoBean">
+    <update id="updateUserInfo" parameterType="com.example.learnitem.bean.userInfo.UserInfoBean">
         UPDATE
         sys_user_info
         <set>

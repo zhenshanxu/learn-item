@@ -29,11 +29,11 @@ public class UserInfoApi {
     IUserInfoService userInfoService;
 
     @ApiOperation("添加用户信息")
-    @PostMapping("/api/saveUserInfo")
-    public ResponseBean saveUserInfo(@RequestBody UserInfoBean userInfo) {
+    @PostMapping("/api/addUserInfo")
+    public ResponseBean addUserInfo(@RequestBody UserInfoBean userInfo) {
         ResponseBean response = new ResponseBean();
         try {
-            Map<String, Object> flag = userInfoService.saveUser(userInfo);
+            Map<String, Object> flag = userInfoService.addUserInfo(userInfo);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
                 response.setSuccess(false);
                 response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
@@ -53,7 +53,7 @@ public class UserInfoApi {
     public ResponseBean updateUserInfo(@RequestBody UserInfoBean userInfo) {
         ResponseBean response = new ResponseBean();
         try {
-            Map<String, Object> flag = userInfoService.updateUser(userInfo);
+            Map<String, Object> flag = userInfoService.updateUserInfo(userInfo);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
                 response.setSuccess(false);
                 response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
@@ -73,7 +73,7 @@ public class UserInfoApi {
     public ResponseBean deleteUserInfo(@RequestBody UserInfoBean userInfo) {
         ResponseBean response = new ResponseBean();
         try {
-            userInfoService.deleteUser(userInfo);
+            userInfoService.deleteUserInfo(userInfo);
             response.setSuccess(true);
             response.setResult("用户信息删除成功!");
         } catch (Exception e) {

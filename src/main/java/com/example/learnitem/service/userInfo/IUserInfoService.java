@@ -21,7 +21,7 @@ public interface IUserInfoService {
      * @param userInfoBean
      * @return
      */
-    Map<String, Object> saveUser(UserInfoBean userInfoBean);
+    Map<String, Object> addUserInfo(UserInfoBean userInfoBean);
 
     /**
      * 更新用户信息
@@ -29,14 +29,14 @@ public interface IUserInfoService {
      * @param userInfoBean
      * @return
      */
-    Map<String, Object> updateUser(UserInfoBean userInfoBean);
+    Map<String, Object> updateUserInfo(UserInfoBean userInfoBean);
 
     /**
      * 删除用户
      *
      * @param userInfoBean
      */
-    void deleteUser(UserInfoBean userInfoBean);
+    void deleteUserInfo(UserInfoBean userInfoBean);
 
     /**
      * 获取用户
