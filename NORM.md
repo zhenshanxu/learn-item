@@ -7,3 +7,22 @@
     * 插入的方法用save/insert做前缀。
     * 删除的方法用remove/delete做前缀。
     * 修改的方法用update做前缀。
+    * 
+    * 新增接口：addXxx
+    * 分页接口：pagingXxx
+    * 列表接口：listingXxx\queryXxx
+    * 树接口：plantXxx
+    * 更新接口：updateXxx
+    * 获取详情接口：detailsXxx\getXxx
+    * 删除接口：deleteXxx
+    * 激活接口：activateXxx
+    * 冻结接口：freezeXxx
+    * 下载文件：downloadFile 
+    * 判断文件存在：existsFile
+    * 复制文件：copyFile
+    * 上传文件：uploadFile
+    * 文件压缩：compressFile
+    * 文件解压：decompressFile
+    * 同步文件：syncFile
+    * 识别文件：recogniseFile
+    * 获取文件详情：detailsFile
