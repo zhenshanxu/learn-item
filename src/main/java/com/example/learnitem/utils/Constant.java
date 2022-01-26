@@ -46,4 +46,9 @@ public class Constant {
      * 删除状态
      */
     public static int DELETE_STATUS = -1;
+
+    /**
+     * 默认初始状态
+     */
+    public static int INITIAL_STATUS = 1;
 }
