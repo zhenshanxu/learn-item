@@ -88,11 +88,11 @@ public class LoginApi {
     }
 
     @ApiOperation("新用户注册")
-    @PostMapping("/api/signIn")
-    public ResponseBean signIn(@RequestBody Map<String, Object> signInMap) {
+    @PostMapping("/api/signUp")
+    public ResponseBean signIn(@RequestBody Map<String, Object> signUpParam) {
         ResponseBean response = new ResponseBean();
         try {
-            Map<String, Object> flag = loginService.signIn(signInMap);
+            Map<String, Object> flag = loginService.signUp(signUpParam);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
                 response.setSuccess(false);
                 response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());

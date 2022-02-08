@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @BelongsPackage: com.example.learnitem.utils
  * @Author: ZhenShanXu
  * @CreateTime: 2021-11-05 14:08.
- * @Description: 公共的
+ * @Description: 公共的，常见的
  */
 
 @Component
@@ -43,10 +43,9 @@ public class Common {
     /**
      * 返回md5加密后的密码，根据当前配置的salt
      *
-     * @return
      */
     public static String getPasswordMd5(int userId,String password){
         return SecureUtil.md5(SystemObject.myConfig.getMd5Salt()+userId+password);
-    };
+    }
 
 }

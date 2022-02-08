@@ -9,12 +9,15 @@ import java.util.UUID;
  * @BelongsPackage: com.example.learnitem.utils
  * @Author: ZhenShanXu
  * @CreateTime: 2021-11-01 15:31.
- * @Description: 常量
+ * @Description: 常数，常量
  */
 
 @Component
 public class Constant {
 
+    /**
+     * 验证码有效时间
+     */
     public static final long VERIFY_CODE_VALID_TIME = 60;
 
     /**
@@ -38,7 +41,7 @@ public class Constant {
     public static String MAIL_RULES = "^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-z]{2,}$";
 
     /**
-     * 错误值
+     * 错误值-错误状态
      */
     public static String ERROR_VALUE = "error";
 

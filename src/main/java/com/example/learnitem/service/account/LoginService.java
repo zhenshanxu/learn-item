@@ -31,10 +31,10 @@ public interface LoginService {
     /**
      * 用户注册
      *
-     * @param signInMap
+     * @param signUpParam
      * @return
      */
-    Map<String, Object> signIn(Map<String, Object> signInMap);
+    Map<String, Object> signUp(Map<String, Object> signUpParam);
 
     /**
      * 获取验证码

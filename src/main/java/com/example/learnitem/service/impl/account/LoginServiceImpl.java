@@ -120,18 +120,18 @@ public class LoginServiceImpl implements LoginService {
     /**
      * 账号注册
      *
-     * @param signInMap 账号（手机号/邮箱）注册
+     * @param signUpParam 账号（手机号/邮箱）注册
      * @return 返回值
      */
     @Override
     @Transactional
-    public Map<String, Object> signIn(Map<String, Object> signInMap) {
+    public Map<String, Object> signUp(Map<String, Object> signUpParam) {
         Map<String, Object> result = new HashMap<>();
         UserInfoBean userInfo = new UserInfoBean();
-        String account = String.valueOf(signInMap.get("account"));
+        String account = String.valueOf(signUpParam.get("account"));
         String password = null;
-        if (signInMap.containsKey("verifyCode")) {
-            String verifyCode = String.valueOf(signInMap.get("verifyCode"));
+        if (signUpParam.containsKey("verifyCode")) {
+            String verifyCode = String.valueOf(signUpParam.get("verifyCode"));
             Object code = redisService.get(account);
             if (code == null) {
                 result.put(Constant.ERROR_VALUE, "验证码已过期,请重新获取!");
@@ -144,8 +144,8 @@ public class LoginServiceImpl implements LoginService {
             password = "123456";
             result.put("account", account);
             result.put("content", "临时密码为:" + password + ",请登录后修改密码!");
-        } else if (signInMap.containsKey("password")) {
-            password = String.valueOf(signInMap.get("password"));
+        } else if (signUpParam.containsKey("password")) {
+            password = String.valueOf(signUpParam.get("password"));
             result.put("account", account);
             result.put("content", "账号注册成功!");
         }
@@ -193,7 +193,7 @@ public class LoginServiceImpl implements LoginService {
                     .replace("${verifyCode}", String.valueOf(verifyCode))
                     .replace("${time}", String.valueOf(time / 60));
             mailSendUtil.sendWithHtml(account, "验证码", content);
-        }//todo 添加短信
+        }//TODO 添加短信
         redisService.set(account, verifyCode, time);
         return result;
     }
