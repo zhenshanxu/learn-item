@@ -1,4 +1,4 @@
-package com.example.learnitem.utils;
+package com.example.learnitem.utils.enumTypeUtils;
 
 import org.springframework.stereotype.Component;
 

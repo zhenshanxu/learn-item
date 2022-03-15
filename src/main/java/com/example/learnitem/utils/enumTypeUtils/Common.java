@@ -1,4 +1,4 @@
-package com.example.learnitem.utils;
+package com.example.learnitem.utils.enumTypeUtils;
 
 import cn.hutool.crypto.SecureUtil;
 import com.example.learnitem.config.SystemObject;

@@ -1,5 +1,6 @@
 package com.example.learnitem.bean.assist;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,5 +45,10 @@ public class AssistBean {
      * 总数
      */
     private int total;
+
+    /**
+     * 状态，是否删除 1：正常，-1:删除
+     */
+    private int isDelete;
 
 }

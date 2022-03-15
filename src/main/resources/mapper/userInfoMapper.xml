@@ -38,7 +38,7 @@
             <if test="phone !=null and phone!='' ">phone = #{phone},</if>
             <if test="email !=null and email !='' ">email = #{email},</if>
             <if test="password !=null and password !='' ">password = #{password},</if>
-            <if test="isDelete !=null and isDelete !='' ">is_delete = #{isDelete},</if>
+            <if test="isDelete !=null and isDelete !=0 ">is_delete = #{isDelete},</if>
             <if test="mender !=null and mender !=0 ">mender = #{mender},</if>
             <if test="modifyTime !=null and modifyTime !='' ">modify_time= #{modifyTime}</if>
         </set>

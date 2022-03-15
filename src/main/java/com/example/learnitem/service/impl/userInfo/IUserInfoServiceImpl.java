@@ -3,7 +3,7 @@ package com.example.learnitem.service.impl.userInfo;
 import com.example.learnitem.bean.userInfo.UserInfoBean;
 import com.example.learnitem.dao.userInfo.UserInfoDao;
 import com.example.learnitem.service.userInfo.IUserInfoService;
-import com.example.learnitem.utils.Constant;
+import com.example.learnitem.utils.enumTypeUtils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

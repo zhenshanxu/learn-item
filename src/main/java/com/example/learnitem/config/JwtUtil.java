@@ -1,6 +1,6 @@
 package com.example.learnitem.config;
 
-import com.example.learnitem.utils.Constant;
+import com.example.learnitem.utils.enumTypeUtils.Constant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;

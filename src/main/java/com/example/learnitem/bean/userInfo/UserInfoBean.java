@@ -54,9 +54,4 @@ public class UserInfoBean extends AssistBean implements Serializable {
     @ApiModelProperty("密码")
     private String password;
 
-    /**
-     * 状态，是否删除 1：正常，0删除
-     */
-    @ApiModelProperty("状态，是否删除 1：正常，0：删除")
-    private int isDelete;
 }

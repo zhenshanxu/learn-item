@@ -2,7 +2,7 @@ package com.example.learnitem.interceptors;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.learnitem.config.JwtUtil;
-import com.example.learnitem.utils.Constant;
+import com.example.learnitem.utils.enumTypeUtils.Constant;
 import io.jsonwebtoken.Claims;
 import org.springframework.web.servlet.HandlerInterceptor;
 

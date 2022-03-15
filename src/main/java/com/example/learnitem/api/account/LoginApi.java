@@ -2,7 +2,7 @@ package com.example.learnitem.api.account;
 
 import com.example.learnitem.bean.assist.ResponseBean;
 import com.example.learnitem.service.account.LoginService;
-import com.example.learnitem.utils.Constant;
+import com.example.learnitem.utils.enumTypeUtils.Constant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
