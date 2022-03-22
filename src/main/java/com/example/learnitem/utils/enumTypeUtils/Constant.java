@@ -54,4 +54,36 @@ public class Constant {
      * 默认初始状态
      */
     public static int INITIAL_STATUS = 1;
+
+    /**
+     * 令牌 - 标识
+     */
+    public static String TOKEN_SYMBOL = "token";
+
+    /**
+     * 账号 - 标识
+     */
+    public static String ACCOUNT = "account";
+
+    /**
+     * 账号密码 - 标识
+     */
+    public static String PASSWORD = "password";
+
+    /**
+     * 设置默认的账号密码
+     */
+    public static String ACQUIESCENT_PASSWORD = "123456";
+
+    /**
+     * 验证码 - 标识
+     */
+    public static String VERIFY_CODE = "verifyCode";
+
+    /**
+     * 内容 - 标识
+     */
+    public static String CONTENT = "content";
+
+
 }

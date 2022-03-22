@@ -29,10 +29,10 @@ public class LoginApi {
 
     @ApiOperation("获取验证码")
     @PostMapping("/api/getVerifyCode")
-    public ResponseBean getVerifyCode(@RequestBody Map<String, Object> account) {
+    public ResponseBean getVerifyCode(@RequestBody Map<String, Object> accountObject) {
         ResponseBean response = new ResponseBean();
         try {
-            Map<String, Object> flag = loginService.getVerifyCode(account.get("account").toString());
+            Map<String, Object> flag = loginService.getVerifyCode(accountObject.get(Constant.ACCOUNT).toString());
             if (flag.containsKey(Constant.ERROR_VALUE)) {
                 response.setSuccess(false);
                 response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());

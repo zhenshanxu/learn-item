@@ -50,8 +50,8 @@ public class LoginServiceImpl implements LoginService {
     public Map<String, Object> accountToLogin(Map<String, Object> accountToLogin) {
         Map<String, Object> result = new HashMap<>();
         UserInfoBean userInfo = new UserInfoBean();
-        String account = String.valueOf(accountToLogin.get("account"));
-        String password = String.valueOf(accountToLogin.get("password"));
+        String account = String.valueOf(accountToLogin.get(Constant.ACCOUNT));
+        String password = String.valueOf(accountToLogin.get(Constant.PASSWORD));
         boolean isMail = account.matches(Constant.MAIL_RULES);
         if (isMail) {
             userInfo.setEmail(account);
@@ -72,7 +72,7 @@ public class LoginServiceImpl implements LoginService {
         }
         String token = JwtUtil.createJWT(user.getId(), account);
         redisService.set(token, user, Constant.TOKEN_EXPIRE_TIME);
-        result.put("token", token);
+        result.put(Constant.TOKEN_SYMBOL, token);
         return result;
     }
 
@@ -86,8 +86,8 @@ public class LoginServiceImpl implements LoginService {
     public Map<String, Object> codeToLogin(Map<String, Object> codeToLogin) {
         Map<String, Object> result = new HashMap<>();
         UserInfoBean userInfo = new UserInfoBean();
-        String account = String.valueOf(codeToLogin.get("account"));
-        String verifyCode = String.valueOf(codeToLogin.get("verifyCode"));
+        String account = String.valueOf(codeToLogin.get(Constant.ACCOUNT));
+        String verifyCode = String.valueOf(codeToLogin.get(Constant.VERIFY_CODE));
         Object code = redisService.get(account);
         if (code == null) {
             result.put(Constant.ERROR_VALUE, "验证码已过期,请重新获取!");
@@ -113,7 +113,7 @@ public class LoginServiceImpl implements LoginService {
         }
         String token = JwtUtil.createJWT(user.getId(), account);
         redisService.set(token, user, Constant.TOKEN_EXPIRE_TIME);
-        result.put("token", token);
+        result.put(Constant.TOKEN_SYMBOL, token);
         return result;
     }
 
@@ -128,10 +128,10 @@ public class LoginServiceImpl implements LoginService {
     public Map<String, Object> signUp(Map<String, Object> signUpParam) {
         Map<String, Object> result = new HashMap<>();
         UserInfoBean userInfo = new UserInfoBean();
-        String account = String.valueOf(signUpParam.get("account"));
+        String account = String.valueOf(signUpParam.get(Constant.ACCOUNT));
         String password = null;
-        if (signUpParam.containsKey("verifyCode")) {
-            String verifyCode = String.valueOf(signUpParam.get("verifyCode"));
+        if (signUpParam.containsKey(Constant.VERIFY_CODE)) {
+            String verifyCode = String.valueOf(signUpParam.get(Constant.VERIFY_CODE));
             Object code = redisService.get(account);
             if (code == null) {
                 result.put(Constant.ERROR_VALUE, "验证码已过期,请重新获取!");
@@ -141,13 +141,13 @@ public class LoginServiceImpl implements LoginService {
                 result.put(Constant.ERROR_VALUE, "验证码不正确,请重新输入!");
                 return result;
             }
-            password = "123456";
-            result.put("account", account);
-            result.put("content", "临时密码为:" + password + ",请登录后修改密码!");
-        } else if (signUpParam.containsKey("password")) {
-            password = String.valueOf(signUpParam.get("password"));
-            result.put("account", account);
-            result.put("content", "账号注册成功!");
+            password = Constant.ACQUIESCENT_PASSWORD;
+            result.put(Constant.ACCOUNT, account);
+            result.put(Constant.CONTENT, "临时密码为:" + password + ",请登录后修改密码!");
+        } else if (signUpParam.containsKey(Constant.PASSWORD)) {
+            password = String.valueOf(signUpParam.get(Constant.PASSWORD));
+            result.put(Constant.ACCOUNT, account);
+            result.put(Constant.CONTENT, "账号注册成功!");
         }
         boolean isMail = account.matches(Constant.MAIL_RULES);
         if (isMail) {
@@ -193,7 +193,9 @@ public class LoginServiceImpl implements LoginService {
                     .replace("${verifyCode}", String.valueOf(verifyCode))
                     .replace("${time}", String.valueOf(time / 60));
             mailSendUtil.sendWithHtml(account, "验证码", content);
-        }//TODO 添加短信
+        } else {
+            //TODO 添加短信
+        }
         redisService.set(account, verifyCode, time);
         return result;
     }
