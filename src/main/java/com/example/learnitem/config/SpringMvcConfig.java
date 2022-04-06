@@ -24,15 +24,16 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**");
-        registry.addInterceptor(new TokenInterceptor()).
-                addPathPatterns("/**").
-                excludePathPatterns("/").
-                excludePathPatterns("/index").
-                excludePathPatterns("/api/signIn").
-                excludePathPatterns("/api/getVerifyCode").
-                excludePathPatterns("/api/codeToLogin").
-                excludePathPatterns("/api/accountToLogin").
-                excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
+        registry.addInterceptor(new TokenInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/")
+                .excludePathPatterns("/index")
+                .excludePathPatterns("/static/**")
+                .excludePathPatterns("/api/signUp")
+                .excludePathPatterns("/api/codeToLogin")
+                .excludePathPatterns("/api/getVerifyCode")
+                .excludePathPatterns("/api/accountToLogin")
+                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
     }
 
     @Override
@@ -44,6 +45,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
 
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/");
     }
 }

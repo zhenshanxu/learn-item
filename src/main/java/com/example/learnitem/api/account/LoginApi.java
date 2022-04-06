@@ -89,7 +89,7 @@ public class LoginApi {
 
     @ApiOperation("新用户注册")
     @PostMapping("/api/signUp")
-    public ResponseBean signIn(@RequestBody Map<String, Object> signUpParam) {
+    public ResponseBean signUp(@RequestBody Map<String, Object> signUpParam) {
         ResponseBean response = new ResponseBean();
         try {
             Map<String, Object> flag = loginService.signUp(signUpParam);

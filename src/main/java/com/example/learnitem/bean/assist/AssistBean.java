@@ -1,5 +1,6 @@
 package com.example.learnitem.bean.assist;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,7 @@ import lombok.experimental.Accessors;
  * @CreateTime: 2021-11-02 13:39.
  * @Description:
  */
+@ApiModel("实体协助详情")
 @Data
 @NoArgsConstructor
 public class AssistBean {
